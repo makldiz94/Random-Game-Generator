@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour {
 
@@ -63,4 +64,14 @@ public class Player_Controller : MonoBehaviour {
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+   /* void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Killbox")
+        {
+            Debug.Log("You should be dead");
+            Destroy(this.gameObject);
+        }
+    } */
+
 }
