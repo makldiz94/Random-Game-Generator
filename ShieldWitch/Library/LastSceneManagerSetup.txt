@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/DoorSwitchTest.unity
+- path: Assets/Scenes/Michael.unity
   isLoaded: 1
   isActive: 1

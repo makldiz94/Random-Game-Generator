@@ -1,9 +1,12 @@
-﻿<Properties StartupItem="Assembly-CSharp-firstpass.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Easy Doors\Switch.js">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Door.cs">
     <Files>
-      <File FileName="Assets\Scripts\Easy Doors\Switch.js" Line="9" Column="4" />
-      <File FileName="Assets\Scripts\Misc\DestroyOnTrigger.js" Line="1" Column="1" />
+      <File FileName="Assets\Switch.cs" Line="28" Column="26" />
+      <File FileName="Assets\DoorTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Door.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Switch.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Door.cs" Line="8" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
