@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour {
 
+	public float radius = 5.0F;
+	public float power = 10.0F;
     public float maxSpeed = 10f;
     public float jumpForce = 300f;
     private bool facingRight = true;
@@ -22,7 +24,16 @@ public class Player_Controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Vector3 explosionPos = transform.position;
+		Collider[] colliders = Physics.OverlapSphere (explosionPos, radius);
+		foreach (Collider hit in colliders){
+			Rigidbody rb = hit.GetComponent<Rigidbody> ();
+
+			if (rb != null)
+				Debug.Log ("Should explode");
+				rb.AddExplosionForce (power, explosionPos, radius, 3.0F);
 	
+	}
 	}
 	
 	// Update is called once per frame
