@@ -23,6 +23,7 @@ public class ShieldPulse : MonoBehaviour
 		if(col.gameObject.tag == "Player")
 		{
 			forceReady = true;
+			Debug.Log ("ForceReady");
 		}
 	}
 

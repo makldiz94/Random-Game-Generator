@@ -45,8 +45,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ExplosionForce2D\script\ExplosionForce2D.cs" />
+     <Compile Include="Assets\Scripts\AlienC.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Camera\PixelPerfectCamera.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\DoorTrigger.cs" />
+     <Compile Include="Assets\Scripts\EnemyPace.cs" />
+     <Compile Include="Assets\Scripts\Killbox.cs" />
+     <Compile Include="Assets\Scripts\LookAhead.cs" />
+     <Compile Include="Assets\Scripts\LookAt.cs" />
+     <Compile Include="Assets\Scripts\MoveForward.cs" />
      <Compile Include="Assets\Scripts\Old Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\Old Scripts\Collectable.cs" />
      <Compile Include="Assets\Scripts\Old Scripts\Enemy.cs" />
@@ -57,8 +66,17 @@
      <Compile Include="Assets\Scripts\Old Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Old Scripts\RandomSprite.cs" />
      <Compile Include="Assets\Scripts\Old Scripts\Shoot.cs" />
-     <Compile Include="Assets\Scripts\Player Movement\Player_Controller.cs" />
+     <Compile Include="Assets\Scripts\Player\MagicShield.cs" />
+     <Compile Include="Assets\Scripts\Player\Player_Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Projectile.cs" />
+     <Compile Include="Assets\Scripts\PulseDestroyBullet.cs" />
+     <Compile Include="Assets\Scripts\PulseGenerator.cs" />
+     <Compile Include="Assets\Scripts\PulseTrigger.cs" />
+     <Compile Include="Assets\Scripts\PuzzleButton.cs" />
+     <Compile Include="Assets\Scripts\RigidBody2DExtension.cs" />
+     <Compile Include="Assets\Scripts\ShieldPulse.cs" />
+     <Compile Include="Assets\Scripts\ShockPanel.cs" />
      <Compile Include="Assets\Scripts\Switch.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
