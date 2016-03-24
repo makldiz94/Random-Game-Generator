@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Switch : MonoBehaviour {
+public class PuzzleButton : MonoBehaviour {
 
 	public DoorTrigger[] doorTriggers;
 	public bool sticky;
@@ -20,12 +20,15 @@ public class Switch : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D target){
+		if (target.gameObject.tag == "PuzzleBlock"){
+			Debug.Log ("Hit by puzzle block");
 		animator.SetInteger ("AnimState", 1);
 		down = true;
 
-		foreach (DoorTrigger trigger in doorTriggers) {
-			if(trigger != null)
-				trigger.Toggle(true);
+			foreach (DoorTrigger trigger in doorTriggers) {
+				if (trigger != null)
+					trigger.Toggle (true);
+			}
 		}
 	}
 
@@ -52,3 +55,4 @@ public class Switch : MonoBehaviour {
 		}
 	}
 }
+
