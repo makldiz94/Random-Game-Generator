@@ -10,10 +10,12 @@ public class ShieldPulse : MonoBehaviour
 	public float Power = 5;
 	public float Radius = 5;
 
+    public Transform player;
+
 	// Use this for initialization
 	void Start ()
 	{
-
+        player = GetComponent<Transform>();
 	}
 
 	// Update is called once per frame
@@ -28,7 +30,8 @@ public class ShieldPulse : MonoBehaviour
 		//Vector3 playerPos = transform.position; --> Doesn't work
 		Vector3 objPos1 = new Vector3 (0,0,0);
 		AddExplosionForce(GetComponent<Rigidbody2D>(), Power * 100, objPos1, Radius);
-		}
+        //AddExplosionForce(GetComponent<Rigidbody2D>(), Power * 100, player.position, Radius);
+        }
 		# endif	
 
 	}

@@ -15,16 +15,21 @@ public class Player_Controller : MonoBehaviour {
     private float groundRadius = 0.2f;
     public LayerMask whatIsGround;
 
+    public int curHealth;
+    public int maxHealth = 3;
+
     void Awake()
     {
         body2D = GetComponent<Rigidbody2D>();
     }
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        curHealth = maxHealth;
 	}
+
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 
         //uses the groundcheck transform to find whether we are ON THE GROUND. Returns true or false.
@@ -51,9 +56,20 @@ public class Player_Controller : MonoBehaviour {
     void Update()
     {
         //Currently Jump is just the space button for testing purposes, we will change this!
-        if(grounded && Input.GetKeyDown(KeyCode.Space))
+        if(grounded && Input.GetButtonDown("Jump"))
         {
             body2D.AddForce(new Vector2(0, jumpForce));
+        }
+
+        //Checks whether you have Health.
+        if(curHealth > maxHealth)
+        {
+            curHealth = maxHealth;
+        }
+
+        if(curHealth <= 0)
+        {
+            Die();
         }
 			
     }
@@ -65,6 +81,22 @@ public class Player_Controller : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    void Die()
+    {
+        //restarts in Tevin's Scene.
+        SceneManager.LoadScene("Tevin");
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //if an enemy bullet touches player, health decreases and bullet destroys
+        if(col.gameObject.tag == "Deadly")
+        {
+            curHealth--;
+            Destroy(col.gameObject);
+        }
     }
 
    /* void OnTriggerEnter2D(Collider2D col)
