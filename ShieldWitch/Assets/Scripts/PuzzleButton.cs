@@ -22,7 +22,7 @@ public class PuzzleButton : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D target){
 		if (target.gameObject.tag == "PuzzleBlock"){
 			Debug.Log ("Hit by puzzle block");
-		animator.SetInteger ("AnimState", 1);
+		//animator.SetInteger ("AnimState", 1);
 		down = true;
 
 			foreach (DoorTrigger trigger in doorTriggers) {
@@ -37,7 +37,7 @@ public class PuzzleButton : MonoBehaviour {
 		if (sticky && down)
 			return;
 
-		animator.SetInteger ("AnimState", 2);
+		//animator.SetInteger ("AnimState", 2);
 
 		down = false;
 

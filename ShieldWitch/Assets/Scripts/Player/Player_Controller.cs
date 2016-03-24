@@ -86,14 +86,16 @@ public class Player_Controller : MonoBehaviour {
     void Die()
     {
         //restarts in Tevin's Scene.
-        SceneManager.LoadScene("Tevin");
+        SceneManager.LoadScene("Michael");
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
+		
         //if an enemy bullet touches player, health decreases and bullet destroys
         if(col.gameObject.tag == "Deadly")
         {
+			
             curHealth--;
             Destroy(col.gameObject);
         }

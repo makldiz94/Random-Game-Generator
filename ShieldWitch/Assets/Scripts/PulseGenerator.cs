@@ -21,8 +21,20 @@ public class PulseGenerator : MonoBehaviour {
 		{
 			Debug.Log ("Fire2 pressed, instantiate pulse");
 			GameObject pulseClone = Instantiate (pulse, transform.position, transform.rotation) as GameObject;
-			Object.Destroy(pulseClone, .5f);
+			Object.Destroy (pulseClone, .5f);
+
 
 		}
+
 	}
+
+	/*void OnTriggerEnter2D(Collider2D col)
+	{
+		//if an enemy bullet touches shield bullet destroys
+		if(col.gameObject.tag == "PuzzleBlock")
+		{
+			Debug.Log ("Collided with shield pulse");
+			Destroy(col.gameObject);
+		}
+	}*/
 }
