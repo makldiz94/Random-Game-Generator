@@ -16,6 +16,8 @@ public class MagicShield : MonoBehaviour {
 
     public GameObject player;
 
+    public float posOffset = 0f;
+
 
     // Use this for initialization
     void Awake ()
@@ -33,7 +35,7 @@ public class MagicShield : MonoBehaviour {
 	void Update ()
     {
 
-        playerPos = new Vector3(player.transform.position.x + .45f, player.transform.position.y + .45f, 1);
+        playerPos = new Vector3(player.transform.position.x + posOffset, player.transform.position.y + posOffset, 0);
         //allows the Right Joystick to move around the "Shield"
         Vector3 inputDirection = Vector3.zero;
         inputDirection.x = Input.GetAxis("RightJoyHorizontal");
