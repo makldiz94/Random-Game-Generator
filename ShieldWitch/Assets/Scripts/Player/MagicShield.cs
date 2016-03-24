@@ -41,7 +41,6 @@ public class MagicShield : MonoBehaviour {
         inputDirection.x = Input.GetAxis("RightJoyHorizontal");
         inputDirection.y = Input.GetAxis("RightJoyVertical");
 
-        //transform.position = new Vector3(player.transform.position.x + .5f, player.transform.position.y + .5f, transform.position.z);
         shield.position = playerPos + inputDirection;
         //shield.position = startPos + inputDirection;
 
