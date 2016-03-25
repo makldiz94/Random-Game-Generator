@@ -51,7 +51,7 @@ public class HUD : MonoBehaviour {
             Heart3.SetActive(false);
         }
 
-        shieldTimer.text = "Shield Timer " + shield.shieldUse;
+        shieldTimer.text = "Shield Timer " + System.Math.Round(shield.shieldUse, 0);
     }
 
 }

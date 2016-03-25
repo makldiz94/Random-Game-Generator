@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour {
 	private Rigidbody2D body2D;
 	public int paceDirection = 1;
     public float speed = -10f;
+    public float baseSpeed = -10f;
     public bool myBullet = false;
 
 	// Use this for initialization
@@ -63,7 +64,7 @@ public class Projectile : MonoBehaviour {
     {
         if(col.gameObject.tag == "MagicShield" && myBullet == false)
         {
-            speed = -10f;
+            speed = baseSpeed;
         }
         else if(col.gameObject.tag == "MagicShield" && myBullet == true)
         {
