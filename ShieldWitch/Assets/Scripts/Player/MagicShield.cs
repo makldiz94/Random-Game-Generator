@@ -14,6 +14,7 @@ public class MagicShield : MonoBehaviour {
 
     private Transform shield;
     private SpriteRenderer shieldRender;
+    private CircleCollider2D shieldCollide;
 
     public GameObject player;
 
@@ -28,6 +29,7 @@ public class MagicShield : MonoBehaviour {
     {
         shield = GetComponent<Transform>();
         shieldRender = GetComponent<SpriteRenderer>();
+        shieldCollide = GetComponent<CircleCollider2D>();
 
         startPos = shield.position;
 
@@ -44,41 +46,65 @@ public class MagicShield : MonoBehaviour {
         
         playerPos = new Vector3(player.transform.position.x + posOffset, player.transform.position.y + posOffset, 0);
         //allows the Right Joystick to move around the "Shield"
-        Vector3 inputDirection = Vector3.zero;
-        inputDirection.x = Input.GetAxis("RightJoyHorizontal");
+        //Vector3 inputDirection = Vector3.zero;
+       /* inputDirection.x = Input.GetAxis("RightJoyHorizontal");
         inputDirection.y = Input.GetAxis("RightJoyVertical");
 
-        shield.position = playerPos + inputDirection; 
+        shield.position = playerPos + inputDirection; */
 
+
+
+     
 
         //shieldRender.enabled = false;
 
-        /* A timer attempt
-        if(Input.GetAxis("RightJoyHorizontal") > 0 || Input.GetAxis("RightJoyHorizontal") < 0|| 
-            Input.GetAxis("RightJoyVertical") > 0 ||Input.GetAxis("RightJoyVertical") < 0 && shieldUse >= 0)
+         //A timer attempt
+        if((Input.GetAxisRaw("RightJoyHorizontal") > 0 || Input.GetAxisRaw("RightJoyHorizontal") < 0|| 
+            Input.GetAxisRaw("RightJoyVertical") > 0 ||Input.GetAxisRaw("RightJoyVertical") < 0) && shieldUse >= 0)
         {
             shieldRender.enabled = true;
+            shieldCollide.enabled = true;
             shieldUse -= Time.deltaTime;
             Vector3 inputDirection = Vector3.zero;
             inputDirection.x = Input.GetAxis("RightJoyHorizontal");
             inputDirection.y = Input.GetAxis("RightJoyVertical");
 
             shield.position = playerPos + inputDirection;
-        }else if (Input.GetAxis("RightJoyHorizontal") == 0 && Input.GetAxis("RightJoyVertical") == 0 && shieldUse < 3)
+        }
+        else if(Input.GetAxisRaw("RightJoyHorizontal") == 0 && Input.GetAxisRaw("RightJoyHorizontal") == 0 &&
+            Input.GetAxisRaw("RightJoyVertical") == 0 && Input.GetAxisRaw("RightJoyVertical") == 0)
+        {
+            shieldUse += Time.deltaTime;
+            if(shieldUse > 3f)
+            {
+                shieldUse = 3f;
+            }
+        }
+        else if (shieldUse <= 0)
         {
             shieldRender.enabled = false;
+            shieldCollide.enabled = false;
             StartCoroutine(MyCoroutine());
-        } */
+        } 
 
     }
 
     //part of the timer attempt
-    /*IEnumerator MyCoroutine()
+    IEnumerator MyCoroutine()
     {
-        yield return new WaitForSeconds(2f);
-        if (shieldUse < 3)
+        //yield return new WaitForSeconds(shieldUse - shieldCharge);
+        if(shieldUse >= 0)
         {
-            shieldUse = 3f;
+            yield return new WaitForSeconds(shieldUse - shieldCharge);
+            shieldCharge = 3f;
+            shieldRender.enabled = true;
         }
-    }*/
+        else if (shieldUse < 0)
+        {
+            yield return new WaitForSeconds(shieldCharge);
+            shieldUse = 3f;
+            shieldRender.enabled = true;
+        }
+        
+    }
 }
