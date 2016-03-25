@@ -22,9 +22,15 @@ public class Projectile : MonoBehaviour {
 		//this.GetComponent<Rigidbody>().AddForce (this.transform.forward * 1000);
 	}
 
-	void OnCollisionEnter2D(Collision2D target){
-		Destroy (gameObject);
-	
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag == "Player") {
+			Debug.Log ("Bullet hit player");
+			Destroy (gameObject);
+		}
+		if (col.gameObject.tag == "Wall") {
+			Debug.Log ("Bullet hit wall");
+			Destroy (gameObject);
+		}
 	}
 
     /*void OnTriggerEnter2D(Collider2D col)

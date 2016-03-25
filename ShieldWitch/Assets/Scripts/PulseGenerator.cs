@@ -20,7 +20,14 @@ public class PulseGenerator : MonoBehaviour {
 		if (Input.GetButtonDown("Fire2"))
 		{
 			Debug.Log ("Fire2 pressed, instantiate pulse");
-			GameObject pulseClone = Instantiate (pulse, transform.position, transform.rotation) as GameObject;
+			Vector3 tmpPos = transform.position;
+			Debug.Log (tmpPos.z);
+			tmpPos.z = 2f;
+			Debug.Log (tmpPos.z);
+			transform.position = tmpPos;
+
+			//GameObject pulseClone = Instantiate (pulse, transform.position, transform.rotation) as GameObject;
+			GameObject pulseClone = Instantiate (pulse, tmpPos, transform.rotation) as GameObject;
 			Object.Destroy (pulseClone, .5f);
 
 

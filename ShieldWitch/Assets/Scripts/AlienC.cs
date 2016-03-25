@@ -35,7 +35,9 @@ public class AlienC : MonoBehaviour {
 
 	void OnShoot(){
 		if (projectile) {
-			GameObject clone = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
+			//+(transform.forward*10)
+			//GameObject clone = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
+			GameObject clone2 = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
 			//myrigidbody = clone.GetComponent<Rigidbody2D> ();
 			//clone.GetComponent<Rigidbody2D>().AddForce (transform.right * -500);
 
