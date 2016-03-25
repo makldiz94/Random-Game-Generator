@@ -12,6 +12,7 @@ public class HUD : MonoBehaviour {
     public GameObject Heart1;
     public GameObject Heart2;
     public GameObject Heart3;
+    public Text shieldTimer;
 
     //public Image HeartUI;
 
@@ -24,6 +25,7 @@ public class HUD : MonoBehaviour {
     void Update()
     {
         Player_Controller player = GetComponent<Player_Controller>();
+        MagicShield shield = GetComponentInChildren<MagicShield>();
         if (player.curHealth == 3)
         {
             Heart1.SetActive(true);
@@ -48,6 +50,8 @@ public class HUD : MonoBehaviour {
             Heart2.SetActive(false);
             Heart3.SetActive(false);
         }
+
+        shieldTimer.text = "Shield Timer " + shield.shieldUse;
     }
 
 }

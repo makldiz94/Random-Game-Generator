@@ -23,6 +23,8 @@ public class MagicShield : MonoBehaviour {
     public float shieldUse = 3f;
     public float shieldCharge = 2f;
 
+    private bool inUse;
+
 
     // Use this for initialization
     void Awake ()
@@ -57,34 +59,32 @@ public class MagicShield : MonoBehaviour {
      
 
         //shieldRender.enabled = false;
+        //shieldCollide.enabled = false;
+        StartCoroutine(MyCoroutine());
 
-         //A timer attempt
-        if((Input.GetAxisRaw("RightJoyHorizontal") > 0 || Input.GetAxisRaw("RightJoyHorizontal") < 0|| 
-            Input.GetAxisRaw("RightJoyVertical") > 0 ||Input.GetAxisRaw("RightJoyVertical") < 0) && shieldUse >= 0)
+        //A timer attempt
+        if ((Input.GetAxisRaw("RightJoyHorizontal") > 0.1 || Input.GetAxisRaw("RightJoyHorizontal") < -0.1|| 
+            Input.GetAxisRaw("RightJoyVertical") > 0.1 ||Input.GetAxisRaw("RightJoyVertical") < -0.1) && shieldUse >= 0)
         {
             shieldRender.enabled = true;
             shieldCollide.enabled = true;
+            inUse = true;
+
             shieldUse -= Time.deltaTime;
             Vector3 inputDirection = Vector3.zero;
             inputDirection.x = Input.GetAxis("RightJoyHorizontal");
             inputDirection.y = Input.GetAxis("RightJoyVertical");
 
             shield.position = playerPos + inputDirection;
-        }
-        else if(Input.GetAxisRaw("RightJoyHorizontal") == 0 && Input.GetAxisRaw("RightJoyHorizontal") == 0 &&
-            Input.GetAxisRaw("RightJoyVertical") == 0 && Input.GetAxisRaw("RightJoyVertical") == 0)
-        {
-            shieldUse += Time.deltaTime;
-            if(shieldUse > 3f)
-            {
-                shieldUse = 3f;
-            }
-        }
-        else if (shieldUse <= 0)
+        }           
+        /*else if (shieldUse <= 0)
         {
             shieldRender.enabled = false;
             shieldCollide.enabled = false;
             StartCoroutine(MyCoroutine());
+        } */
+        else{
+            inUse = false;
         } 
 
     }
@@ -93,17 +93,22 @@ public class MagicShield : MonoBehaviour {
     IEnumerator MyCoroutine()
     {
         //yield return new WaitForSeconds(shieldUse - shieldCharge);
-        if(shieldUse >= 0)
+        if (shieldUse >= 0 && inUse == false)
         {
-            yield return new WaitForSeconds(shieldUse - shieldCharge);
-            shieldCharge = 3f;
-            shieldRender.enabled = true;
+            shieldUse += Time.deltaTime;
+            if (shieldUse > 3f)
+            {
+                shieldUse = 3f;
+            }
+            shieldRender.enabled = false;
+            shieldCollide.enabled = false;
         }
         else if (shieldUse < 0)
         {
+            shieldRender.enabled = false;
+            shieldCollide.enabled = false;
             yield return new WaitForSeconds(shieldCharge);
             shieldUse = 3f;
-            shieldRender.enabled = true;
         }
         
     }

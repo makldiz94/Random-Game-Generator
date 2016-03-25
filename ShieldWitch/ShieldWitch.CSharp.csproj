@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\ShieldPulse.cs" />
     <Compile Include="Assets\Scripts\ShockPanel.cs" />
     <Compile Include="Assets\Scripts\Switch.cs" />
+    <Compile Include="Assets\Scripts\Walls.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
