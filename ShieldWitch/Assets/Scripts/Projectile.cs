@@ -5,6 +5,8 @@ public class Projectile : MonoBehaviour {
 	private Rigidbody2D body2D;
 	public int paceDirection = 1;
     public float speed = -10f;
+    public bool myBullet = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -25,6 +27,11 @@ public class Projectile : MonoBehaviour {
 	
 	}
 
+    /*void OnTriggerEnter2D(Collider2D col)
+    {
+        body2D.position = col.gameObject.transform.position;
+    } */
+
     void OnTriggerStay2D(Collider2D col)
     {
         //Destroy(gameObject);
@@ -32,15 +39,29 @@ public class Projectile : MonoBehaviour {
         {
             //Destroy(gameObject);
             //body2D.AddForce(transform.right * -.00005f * paceDirection);
-            speed = -.1f;
+            //speed = -.1f;
+            //body2D.position = new Vector2(body2D.position.x, col.gameObject.transform.position.y - .1f);
+            if (Input.GetButton("Fire3"))
+            {
+                speed = 15;
+                myBullet = true;
+            } else
+            {
+                speed = -.1f;
+                body2D.position = new Vector2(body2D.position.x, col.gameObject.transform.position.y - .1f);
+            }
         }
     }
 
     void OnTriggerExit2D (Collider2D col)
     {
-        if(col.gameObject.tag == "MagicShield")
+        if(col.gameObject.tag == "MagicShield" && myBullet == false)
         {
             speed = -10f;
+        }
+        else if(col.gameObject.tag == "MagicShield" && myBullet == true)
+        {
+            //Nothing really happens since it happens in stay right now.
         }
     }
 }

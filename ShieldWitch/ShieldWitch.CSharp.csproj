@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
     <Compile Include="Assets\Scripts\EnemyPace.cs" />
+    <Compile Include="Assets\Scripts\HUD.cs" />
     <Compile Include="Assets\Scripts\Killbox.cs" />
     <Compile Include="Assets\Scripts\LookAhead.cs" />
     <Compile Include="Assets\Scripts\LookAt.cs" />

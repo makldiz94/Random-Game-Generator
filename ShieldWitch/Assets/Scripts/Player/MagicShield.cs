@@ -13,16 +13,21 @@ public class MagicShield : MonoBehaviour {
     private Vector3 playerPos;
 
     private Transform shield;
+    private SpriteRenderer shieldRender;
 
     public GameObject player;
 
     public float posOffset = 0f;
+
+    public float shieldUse = 3f;
+    public float shieldCharge = 2f;
 
 
     // Use this for initialization
     void Awake ()
     {
         shield = GetComponent<Transform>();
+        shieldRender = GetComponent<SpriteRenderer>();
 
         startPos = shield.position;
 
@@ -31,50 +36,49 @@ public class MagicShield : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 	
+    
+
 	// Update is called once per frame
 	void Update ()
     {
-
+        
         playerPos = new Vector3(player.transform.position.x + posOffset, player.transform.position.y + posOffset, 0);
         //allows the Right Joystick to move around the "Shield"
         Vector3 inputDirection = Vector3.zero;
         inputDirection.x = Input.GetAxis("RightJoyHorizontal");
         inputDirection.y = Input.GetAxis("RightJoyVertical");
 
-        shield.position = playerPos + inputDirection;
-        //shield.position = startPos + inputDirection;
+        shield.position = playerPos + inputDirection; 
 
 
-        //float posX = Mathf.SmoothDamp(transform.position.x + .75f, player.transform.position.x + .5f, ref velocity.x, smoothTimeX);
-        //float posY = Mathf.SmoothDamp(transform.position.y + .75f, player.transform.position.y + .5f, ref velocity.y, smoothTimeY);
+        //shieldRender.enabled = false;
 
-        //transform.position = new Vector3(posX, posY, transform.position.z);
+        /* A timer attempt
+        if(Input.GetAxis("RightJoyHorizontal") > 0 || Input.GetAxis("RightJoyHorizontal") < 0|| 
+            Input.GetAxis("RightJoyVertical") > 0 ||Input.GetAxis("RightJoyVertical") < 0 && shieldUse >= 0)
+        {
+            shieldRender.enabled = true;
+            shieldUse -= Time.deltaTime;
+            Vector3 inputDirection = Vector3.zero;
+            inputDirection.x = Input.GetAxis("RightJoyHorizontal");
+            inputDirection.y = Input.GetAxis("RightJoyVertical");
 
-        /* if (Input.GetButtonDown("RightTrigger"))
-         {
-             //allows the Right Joystick to move around the "Shield"
-             Vector3 inputDirection = Vector3.zero;
-             inputDirection.x = Input.GetAxis("RightJoyHorizontal");
-             inputDirection.y = Input.GetAxis("RightJoyVertical");
-
-             shield.position = startPos + inputDirection;
-         } else
-         {
-             float posX = Mathf.SmoothDamp(transform.position.x + 1, player.transform.position.x + 1, ref velocity.x, smoothTimeX);
-             float posY = Mathf.SmoothDamp(transform.position.y + 1, player.transform.position.y + 1, ref velocity.y, smoothTimeY);
-
-             transform.position = new Vector3(posX, posY, transform.position.z);
-         } */
+            shield.position = playerPos + inputDirection;
+        }else if (Input.GetAxis("RightJoyHorizontal") == 0 && Input.GetAxis("RightJoyVertical") == 0 && shieldUse < 3)
+        {
+            shieldRender.enabled = false;
+            StartCoroutine(MyCoroutine());
+        } */
 
     }
 
-    //attempt to get the shield to follow the player.
-    /*void FixedUpdate()
+    //part of the timer attempt
+    /*IEnumerator MyCoroutine()
     {
-        //Using Axis to move Horizontal, should work on controller.
-        float move = Input.GetAxis("Horizontal");
-
-        //moves the player left or right based on button press.
-        body2D.velocity = new Vector2(move * maxSpeed, body2D.velocity.y);
-    } */
+        yield return new WaitForSeconds(2f);
+        if (shieldUse < 3)
+        {
+            shieldUse = 3f;
+        }
+    }*/
 }
