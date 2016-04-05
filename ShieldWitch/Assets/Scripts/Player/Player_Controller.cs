@@ -85,29 +85,23 @@ public class Player_Controller : MonoBehaviour {
 
     void Die()
     {
-        //restarts in Tevin's Scene.
-        SceneManager.LoadScene("Michael");
+        body2D.transform.position = CheckPoint.GetActiveCheckPointPosition();
+        curHealth = maxHealth;
+        //SceneManager.LoadScene("Michael");
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-		
+
         //if an enemy bullet touches player, health decreases and bullet destroys
-        if(col.gameObject.tag == "Deadly")
+        if (col.gameObject.tag == "Deadly")
         {
-			
             curHealth--;
             Destroy(col.gameObject);
         }
-    }
-
-   /* void OnTriggerEnter2D(Collider2D col)
-    {
         if (col.gameObject.tag == "Killbox")
         {
-            Debug.Log("You should be dead");
-            Destroy(this.gameObject);
+            Die();
         }
-    } */
-
+    }
 }
