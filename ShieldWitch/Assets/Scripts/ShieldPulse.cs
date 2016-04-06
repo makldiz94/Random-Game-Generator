@@ -25,6 +25,7 @@ public class ShieldPulse : MonoBehaviour
 			forceReady = true;
 			Debug.Log ("ForceReady");
 		}
+			
 	}
 
 	// Update is called once per frame

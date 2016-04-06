@@ -94,14 +94,21 @@ public class Player_Controller : MonoBehaviour {
     {
 
         //if an enemy bullet touches player, health decreases and bullet destroys
-        if (col.gameObject.tag == "Deadly")
+		if (col.gameObject.tag == "Deadly")
         {
             curHealth--;
-            Destroy(col.gameObject);
+            //Destroy(col.gameObject);
         }
         if (col.gameObject.tag == "Killbox")
         {
             Die();
         }
     }
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if(col.gameObject.tag == "Enemy")
+		{
+			curHealth--;
+		}
+	}
 }
