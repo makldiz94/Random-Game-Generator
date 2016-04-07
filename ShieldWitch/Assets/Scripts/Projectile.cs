@@ -91,7 +91,7 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                speed = -.001f;
+                speed = -.1f;
                 speedY = 0f;
                 if (Input.GetAxisRaw("RightJoyHorizontal") >= 0)
                 {
@@ -128,9 +128,12 @@ public class Projectile : MonoBehaviour
 
     IEnumerator WaitTime()
     {
-        yield return new WaitForSeconds(playerShield.shieldUse);
-        speed = baseSpeed;
-        speedY = baseSpeedY;
+        if (myBullet == false)
+        {
+            yield return new WaitForSeconds(playerShield.shieldUse);
+            speed = baseSpeed;
+            speedY = baseSpeedY;
+        }
     }
 
     IEnumerator DeathTime()

@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 public class Player_Controller : MonoBehaviour {
 
     public float maxSpeed = 10f;
+    public float baseSpeed = 10f;
     public float jumpForce = 300f;
+    public float baseForce = 300f;
     private bool facingRight = true;
 
     private Rigidbody2D body2D;
@@ -90,8 +92,7 @@ public class Player_Controller : MonoBehaviour {
 
     void Die()
     {
-        body2D.transform.position = CheckPoint.GetActiveCheckPointPosition();
-        curHealth = maxHealth;
+        StartCoroutine(WaitFor());
         //SceneManager.LoadScene("Michael");
     }
 
@@ -116,4 +117,17 @@ public class Player_Controller : MonoBehaviour {
 			curHealth--;
 		}
 	}
+
+    IEnumerator WaitFor()
+    {
+        maxSpeed = 0f;
+        jumpForce = 0f;
+        //play death animation
+        //anim.SetBool("Death", true);
+        yield return new WaitForSeconds(2f);
+        body2D.transform.position = CheckPoint.GetActiveCheckPointPosition();
+        curHealth = maxHealth;
+        maxSpeed = baseSpeed;
+        jumpForce = baseForce;
+    }
 }
