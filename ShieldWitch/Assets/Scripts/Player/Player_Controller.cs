@@ -9,6 +9,7 @@ public class Player_Controller : MonoBehaviour {
     private bool facingRight = true;
 
     private Rigidbody2D body2D;
+    private Animator anim;
 
     private bool grounded = false;
     public Transform groundCheck;
@@ -21,6 +22,7 @@ public class Player_Controller : MonoBehaviour {
     void Awake()
     {
         body2D = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
 	// Use this for initialization
@@ -37,6 +39,9 @@ public class Player_Controller : MonoBehaviour {
 
         //Using Axis to move Horizontal, should work on controller.
         float move = Input.GetAxis("Horizontal");
+
+        //makes the animator change to the movement animation.
+        anim.SetFloat("Speed", Mathf.Abs(move));
 
         //moves the player left or right based on button press.
         body2D.velocity = new Vector2(move * maxSpeed, body2D.velocity.y);
