@@ -14,7 +14,8 @@ public class CameraMovement : MonoBehaviour {
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("Player_Test");
     }
 
     void FixedUpdate()
